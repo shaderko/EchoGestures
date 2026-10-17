@@ -1,0 +1,12 @@
+.DS_Store
+.build/
+.swiftpm/
+build/
+Analysis/
+Docs/LiveCapture.json
+*.log
+*.xcuserstate
+.env
+.env.*
+*.pem
+*.key

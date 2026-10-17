@@ -1,0 +1,24 @@
+name: Build and test
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  macos:
+    runs-on: macos-15
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Core checks
+        run: ./test.sh
+      - name: Build app and verify signature
+        env:
+          ECHOGESTURES_SIGN_IDENTITY: '-'
+        run: ./build.sh
+      - name: Check bundle metadata
+        run: plutil -lint Resources/Info.plist
